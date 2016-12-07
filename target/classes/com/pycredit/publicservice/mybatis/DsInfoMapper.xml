@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkyunso.db.mybatis.dao.DsInfoMapper">
+	<resultMap type="DsInfo" id="dsInfoResult">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="summary" property="summary"/>
+		<result column="createtime" property="createtime"/>
+	</resultMap>
+
+	<!-- 取得插入数据后的id -->
+	<insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+		insert into DsInfo(name,summary,createTime)
+		values(#{name},#{summary},#{createTime})
+	</insert>
+
+	<update id="update">
+		update DsInfo
+		set name = #{name},
+			summary = #{summary},
+			createTime = #{createTime}
+		where user_id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from DsInfo
+		where id = #{id}
+	</delete>
+
+	<select id="getById" resultMap="dsInfoResult">
+		select *
+		from DsInfo
+		where id = #{id}
+	</select>
+	
+	<select id="getAll" resultMap="dsInfoResult">
+		select * 
+		from DsInfo
+	</select>
+</mapper>
