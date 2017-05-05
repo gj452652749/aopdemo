@@ -1,4 +1,4 @@
-package com.pycredit.publicservice.aop;
+package com.pycredit.publicservice.xml.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class SimpleAspect {
 	public SimpleAspect() {
 		// TODO Auto-generated constructor stub
-		System.out.println("going on: "+this.getClass().getClassLoader());
+		System.out.println("going on");
 	}
 	//代理此包下面所有Service类的所有方法
 	@Pointcut("execution(* com.pycredit.publicservice.aop.service.PersonService.*(..))")

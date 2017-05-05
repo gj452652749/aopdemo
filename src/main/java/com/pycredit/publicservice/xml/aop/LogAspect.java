@@ -1,4 +1,4 @@
-package com.pycredit.publicservice.aop;
+package com.pycredit.publicservice.xml.aop;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +26,8 @@ public class LogAspect {
 		// TODO Auto-generated constructor stub
 		System.out.println("going on: "+this.getClass().getClassLoader());
 	}
-	//代理此包下面所有Service类的所有方法
-	@Pointcut("execution(* com.pycredit.publicservice.web.controller.ProxyController.*(..))")
 	public void pointCut() {
-		System.out.println("s ss ");
+		System.out.println("sss");
 	}
 
 //	@After("pointCut()")
@@ -50,9 +48,8 @@ public class LogAspect {
 //				+ returnVal);
 //	}
 
-	@Around("pointCut()")
 	public String around(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("around start..");
+		System.out.println("xml around start..");
 		Date callTime=new Date();
 		long begin=System.currentTimeMillis();
 		LogMessage message =new LogMessage();

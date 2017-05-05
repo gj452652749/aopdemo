@@ -17,12 +17,17 @@
        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
        http://www.springframework.org/schema/tx 
        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">    
-       <!-- 解决乱码问题-->
-       	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		    <property name="messageConverters">
-		        <list>
-		            <bean id="utf8StringHttpMessageConverter" class="com.spring.util.UTF8StringHttpMessageConverter" />
-		        </list>
-		    </property>
-		</bean>            	
+       <!-- 配置切面的 bean. -->
+	<bean id="logAspect"
+		class="com.pycredit.publicservice.xml.aop.LogAspect"></bean>
+       <!-- 配置 AOP -->
+	<aop:config>
+		<!-- 配置切点表达式 -->
+		<aop:pointcut expression="execution(* com.pycredit.publicservice.web.controller.ProxyController.sucess(..))" 
+			id="pointcut"/>
+		<!-- 配置切面及通知 -->
+		<aop:aspect ref="logAspect" order="1">
+			<aop:around method="around" pointcut-ref="pointcut"/>
+		</aop:aspect>
+	</aop:config>           	
 </beans>
